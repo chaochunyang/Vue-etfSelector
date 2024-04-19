@@ -238,18 +238,8 @@ export default {
     ctx.translate(0.5, 0.5);
     ctx.imageSmoothingEnabled = false;
     this.draw(ctx);
-  },
-  async setup(){
-    const search = async () => {
-    const response = await $fetch('/api/components', {
-      method: 'POST',
-      body: {
-      }
-    });
-    console.log(response);
-    };
-    search()
   }
+  
 }
 
 </script>

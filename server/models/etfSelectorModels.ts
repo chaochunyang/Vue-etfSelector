@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 
+const etfname = new mongoose.Schema({
+  etfID: String,
+  etfName: String
+})
+
+const ETFName = mongoose.model("Etfname", etfname, "etfname")
+
 const components = new mongoose.Schema({
   date: String,
   etfID: String,
@@ -65,4 +72,4 @@ const netvalue = new mongoose.Schema({
 
 const NetValue = mongoose.model("Netvalue", netvalue, "netvalue")
 
-export default { Components, Dividend, ETFOperate, ETFPrice, NetValue };
+export default { Components, Dividend, ETFOperate, ETFPrice, NetValue, ETFName  };

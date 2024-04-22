@@ -1,20 +1,34 @@
 <script>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import Panel from "../components/Panel.vue"
 import ETFTable from "../components/ETFTable.vue"
 import Search from "../components/Search.vue";
 
 export default {
   components: { Panel, Search, ETFTable },
+  methods:{
+    
+  },
   setup() {
-    const stocks = ref({});
+    const stock1 = ref("0050");
+    const stock2 = ref("00878");
+    const stock3 = ref("00919");
+    const themeData = ref({})
 
-    const handleStocksUpdate = (data) => {
-      stocks.value = data;
-      console.log('Updated stocks data:', stocks.value);
+    const getValFromPanel = (etfIDs) => {
+      console.log("page get", etfIDs)
+      themeData.value = etfIDs
+    }
+
+    const handleStocksUpdate = (etfIDs) => {
+      console.log(etfIDs)
+      stock1.value = etfIDs.stock1
+      stock2.value = etfIDs.stock2
+      stock3.value = etfIDs.stock3
+      console.log('Updated stocks data:', stock1.value, stock2.value, stock3.value);
     };
 
-    return { stocks, handleStocksUpdate };
+    return { stock1, stock2, stock3, handleStocksUpdate, getValFromPanel, themeData };
   }
 }
 </script>
@@ -22,15 +36,17 @@ export default {
 <template>
   <main>
     <div class="container mt-4">
-      <Panel>
-        <Search @update-stocks="handleStocksUpdate" />
+      <Panel @valToPage="getValFromPanel">
+        <Search @update-stocks="handleStocksUpdate" :themeData="themeData"/>
       </Panel>
       <hr/>
-  
+
       <div class="container">
         <div class="row h-100 gap-4">
-          <ETFTable />
-        </div> 
+          <ETFTable :stockID="stock1"/>
+          <ETFTable :stockID="stock2"/>
+          <ETFTable :stockID="stock3"/>
+        </div>
       </div>
     </div>
   </main>

@@ -10,8 +10,8 @@
           name="btnradio"
           id="btnradio1"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00891","stock2":"00913","stock3":"00927"}'
+          @click="passETFID"
           checked
         />
         <label class="btn btn-outline-primary p-3" for="btnradio1">
@@ -36,8 +36,8 @@
           name="btnradio"
           id="btnradio2"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00876","stock2":"00881","stock3":"00910"}'
+          @click="passETFID"
         />
         <label class="btn btn-outline-primary p-3" for="btnradio2">
           <svg
@@ -68,8 +68,8 @@
           name="btnradio"
           id="btnradio3"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00895","stock2":"00896","stock3":"00925"}'
+          @click="passETFID"
         />
         <label class="btn btn-outline-primary p-3" for="btnradio3">
           <svg
@@ -96,8 +96,8 @@
           name="btnradio"
           id="btnradio4"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00692","stock2":"00850","stock3":"00920"}'
+          @click="passETFID"
         />
         <label class="btn btn-outline-primary p-3" for="btnradio4">
           <svg
@@ -126,8 +126,8 @@
           name="btnradio"
           id="btnradio5"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00646","stock2":"00757","stock3":"00830"}'
+          @click="passETFID"
         />
         <label class="btn btn-outline-primary p-3" for="btnradio5">
           <svg
@@ -151,8 +151,8 @@
           name="btnradio"
           id="btnradio6"
           autocomplete="off"
-          onclick="check(this.value)"
           value='{"stock1":"00679B","stock2":"00696B","stock3":"00761B"}'
+          @click="passETFID"
         />
         <label class="btn btn-outline-primary p-3" for="btnradio6">
           <svg
@@ -180,10 +180,13 @@
 
 <script>
 export default {
-  setup() {
-    return {};
-  },
-};
+  methods: {
+    passETFID(event) {
+      const etfIDs = JSON.parse(event.target.value)
+      this.$emit('valToPanel',etfIDs)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

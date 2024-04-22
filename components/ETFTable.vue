@@ -3,7 +3,7 @@
     <div class="table-responsive align-top">
       <ClientOnly fallback-tag="span" fallback="Loading comments...">
         <table class="table table-bordered table-hover">
-          <caption class="text-end text-light">統計截止2023.12.18</caption>
+          <caption class="text-end text-muted">統計截止2023.12.18</caption>
           <tr class="table-primary text-center display-6"><th colspan="3">{{ stockID }}</th></tr>
           <tr>
               <td>ETF 名稱</td>
@@ -121,3 +121,11 @@ export default {
   },
 };
 </script>
+
+<style>
+  tr {
+    line-height: 30px;
+    min-height: 30px;
+    height: 30px;
+}
+</style>

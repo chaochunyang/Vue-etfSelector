@@ -10,9 +10,9 @@ export default {
     
   },
   setup() {
-    const stock1 = ref("0050");
-    const stock2 = ref("00878");
-    const stock3 = ref("00919");
+    const stock1 = ref("");
+    const stock2 = ref("");
+    const stock3 = ref("");
     const themeData = ref({})
 
     const getValFromPanel = (etfIDs) => {
@@ -27,6 +27,12 @@ export default {
       stock3.value = etfIDs.stock3
       console.log('Updated stocks data:', stock1.value, stock2.value, stock3.value);
     };
+
+    onMounted(()=>{
+      stock1.value = "0056"
+      stock2.value = "00713"
+      stock3.value = "00878"
+    })
 
     return { stock1, stock2, stock3, handleStocksUpdate, getValFromPanel, themeData };
   }

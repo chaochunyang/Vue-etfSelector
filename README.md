@@ -7,11 +7,11 @@ Take a look at the [etfSelector](https://vue-etf-selector.vercel.app).
 # Features
 
 Vue3
-1. [Props & Emits] Share Data among Components
+**1. [Props & Emits] Share Data among Components** <br/>
    When child component emits data to the parent component, the parent component updates props to other child component.
-2. [Layout & slot] Create Template Layout for each page
+**2. [Layout & slot] Create Template Layout for each page** <br/>
    Create layout template for each page.
-3. [Watchers] Watch Props Data and re-Render Page
+**3. [Watchers] Watch Props Data and re-Render Page** <br/>
    The omMounted componets would be re-Render if props changed.
 
 Nuxt3 + Mongoose

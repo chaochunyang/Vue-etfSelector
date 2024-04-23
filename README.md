@@ -22,7 +22,7 @@ Take a look at the [etfSelector](https://vue-etf-selector.vercel.app).
 ### 3. [useRoute] query params with URL
    Easily Get Params from URL.
 
-
+## Usage
 [Select ETF with Theme]
 <img width="1439" alt="image" src="https://github.com/chaochunyang/Vue-etfSelector/assets/155346531/a325446f-033f-48cf-a687-a67fd780653c">
 

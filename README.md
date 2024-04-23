@@ -20,5 +20,16 @@ Nuxt3 + Mongoose
 3. [useRoute] query params with URL
    Easily Get Params from URL.
 
+
+[Select ETF with Theme]
+<img width="1439" alt="image" src="https://github.com/chaochunyang/Vue-etfSelector/assets/155346531/a325446f-033f-48cf-a687-a67fd780653c">
+
+[Compare ETF by Tables]
+<img width="1439" alt="image" src="https://github.com/chaochunyang/Vue-etfSelector/assets/155346531/7cfc3b4c-0bc9-444a-9974-e1adea7f67b5">
+
+[Draw ETF ROI Chart]
+<img width="1439" alt="image" src="https://github.com/chaochunyang/Vue-etfSelector/assets/155346531/6ce194f2-888a-4008-8bd0-3f292aff2bc4">
+
+
    
    

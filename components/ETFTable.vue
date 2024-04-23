@@ -1,5 +1,5 @@
 <template>
-  <div class="col h-100 shadow">
+  <div class="col col-sm h-100 shadow">
     <div class="table-responsive align-top">
       <ClientOnly fallback-tag="span" fallback="Loading comments...">
         <table class="table table-bordered table-hover">

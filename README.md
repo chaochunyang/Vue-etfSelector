@@ -1,6 +1,8 @@
 # Project: etfSelector Web (Vue3 + Nuxt3 + MongoDB)
 
 Take a look at the [etfSelector](https://vue-etf-selector.vercel.app).
+<img width="1439" alt="image" src="https://github.com/chaochunyang/Vue-etfSelector/assets/155346531/34e236bb-0730-412d-b174-6aa0bd6f4fdb">
+
 
 # Features
 

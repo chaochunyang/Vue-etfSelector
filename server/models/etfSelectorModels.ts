@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const etfname = new mongoose.Schema({
   etfID: String,
-  etfName: String
-})
+  etfName: String,
+});
 
-const ETFName = mongoose.model("Etfname", etfname, "etfname")
+const ETFName = mongoose.model("Etfname", etfname, "etfname");
 
 const components = new mongoose.Schema({
   date: String,
@@ -33,43 +33,50 @@ const dividend = new mongoose.Schema({
 const Dividend = mongoose.model("Dividend", dividend, "dividend");
 
 const etfoperate = new mongoose.Schema({
-  etfID : String,
-  etfName : String,
-  asset : String,
-  dividendRate : String,
-  IRR : String,
-  fee : String,
-  benefitPeople : String,
-  years : String
-})
+  etfID: String,
+  etfName: String,
+  asset: String,
+  dividendRate: String,
+  IRR: String,
+  fee: String,
+  benefitPeople: String,
+  years: String,
+});
 
-const ETFOperate = mongoose.model("Etfoperate", etfoperate, "etfoperate")
+const ETFOperate = mongoose.model("Etfoperate", etfoperate, "etfoperate");
 
 const etfprice = new mongoose.Schema({
-  date : String,
-  etfID : String,
-  tradingVolume : String,
-  tradingMoney : String,
-  open : String,
-  max : String,
-  min : String,
-  close : String,
-  spread : String,
-  tradingTurnOver : String
-})
+  date: String,
+  etfID: String,
+  tradingVolume: String,
+  tradingMoney: String,
+  open: String,
+  max: String,
+  min: String,
+  close: String,
+  spread: String,
+  tradingTurnOver: String,
+});
 
-const ETFPrice = mongoose.model("Etfprice", etfprice, "etfprice")
+const ETFPrice = mongoose.model("Etfprice", etfprice, "etfprice");
 
 const netvalue = new mongoose.Schema({
-  etfID : String,
-  etfName : String,
-  netValue : String,
-  price : String,
-  netValueGap : String,
-  transaction : String,
-  indexTarget : String
-})
+  etfID: String,
+  etfName: String,
+  netValue: String,
+  price: String,
+  netValueGap: String,
+  transaction: String,
+  indexTarget: String,
+});
 
-const NetValue = mongoose.model("Netvalue", netvalue, "netvalue")
+const NetValue = mongoose.model("Netvalue", netvalue, "netvalue");
 
-export default { Components, Dividend, ETFOperate, ETFPrice, NetValue, ETFName  };
+export default {
+  Components,
+  Dividend,
+  ETFOperate,
+  ETFPrice,
+  NetValue,
+  ETFName,
+};

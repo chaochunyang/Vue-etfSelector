@@ -20,62 +20,54 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import Panel from "../components/Panel.vue";
 import Search from "../components/Search.vue";
 
 export default {
   components: { Panel, Search },
   setup() {
-    const stock1 = ref("");
-    const stock2 = ref("");
-    const stock3 = ref("");
+    const stock1 = ref("0056");
+    const stock2 = ref("00713");
+    const stock3 = ref("00878");
     const stock1IRR = ref([]);
     const stock2IRR = ref([]);
     const stock3IRR = ref([]);
     const themeData = ref({});
 
     const getValFromPanel = (etfIDs) => {
-      console.log("page get", etfIDs);
       themeData.value = etfIDs;
     };
 
     const handleStocksUpdate = (etfIDs) => {
-      console.log(etfIDs);
       stock1.value = etfIDs.stock1;
       stock2.value = etfIDs.stock2;
       stock3.value = etfIDs.stock3;
-      console.log(
-        "Updated stocks data:",
-        stock1.value,
-        stock2.value,
-        stock3.value
-      );
     };
 
-    const draw =  (ctx) => {
+    const draw = (ctx, label1, label2, label3, data1, data2, data3) => {
       var etfChart = new Chart(ctx, {
         type: "line",
         data: {
           datasets: [
             {
-              label: stock1.value,
-              data: stock1IRR.value,
+              label: label1,
+              data: data1,
             },
             {
-              label: stock2.value,
-              data: stock2IRR.value,
+              label: label2,
+              data: data2,
             },
             {
-              label: stock3.value,
-              data: stock3IRR.value,
+              label: label3,
+              data: data3,
             },
           ],
         },
         options: {
           scales: {
             x: {
-              type: "time",
+              // type: "time",
               grid: {
                 display: false, // 移除 X 軸的格線
               },
@@ -104,7 +96,7 @@ export default {
           },
         },
       });
-    }
+    };
 
     const fetchData = async () => {
       try {
@@ -127,27 +119,57 @@ export default {
         stock2IRR.value = stock2Data;
         stock3IRR.value = stock3Data;
 
+        // always remove mainchart
+        var oldChart = document.getElementById("mainChart");
+        oldChart.parentNode.removeChild(oldChart);
+
+        // create new mainchart
+        var newChart = document.createElement("canvas");
+        newChart.id = "mainChart";
+        var chartContainer = document.getElementById("chartContainer");
+        chartContainer.appendChild(newChart);
+
+        // draw init
         var c = document.getElementById("mainChart");
         var ctx = c.getContext("2d");
         ctx.translate(0.5, 0.5);
         ctx.imageSmoothingEnabled = false;
-        draw(ctx);
+        draw(
+          ctx,
+          stock1.value,
+          stock2.value,
+          stock3.value,
+          stock1Data,
+          stock2Data,
+          stock3Data
+        );
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     };
 
     onMounted(() => {
-      stock1.value = "0056";
-      stock2.value = "00713";
-      stock3.value = "00878";
-      fetchData();
+      // stock1.value = "0056";
+      // stock2.value = "00713";
+      // stock3.value = "00878";
+      // fetchData();
     });
+
+    watch(
+      [stock1, stock2, stock3],
+      () => {
+        fetchData();
+      },
+      { immediate: true }
+    );
 
     return {
       stock1,
       stock2,
       stock3,
+      stock1IRR,
+      stock2IRR,
+      stock3IRR,
       handleStocksUpdate,
       getValFromPanel,
       themeData,

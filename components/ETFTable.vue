@@ -3,61 +3,65 @@
     <div class="table-responsive align-top">
       <ClientOnly fallback-tag="span" fallback="Loading comments...">
         <table class="table table-bordered table-hover">
-          <caption class="text-end text-muted">統計截止2023.12.18</caption>
-          <tr class="table-primary text-center display-6"><th colspan="3">{{ stockID }}</th></tr>
-          <tr>
-              <td>ETF 名稱</td>
-              <td colspan="2">{{ stockID }}</td>
+          <caption class="text-end text-muted">
+            統計截止2023.12.18
+          </caption>
+          <tr class="table-primary text-center display-6">
+            <th colspan="3">{{ stockID }}</th>
           </tr>
           <tr>
-              <td>追蹤標的</td>
-              <td colspan="2">{{ netvalue.indexTarget }}</td>
+            <td>ETF 名稱</td>
+            <td colspan="2">{{ stockID }}</td>
           </tr>
           <tr>
-              <td>市價</td>
-              <td colspan="2">{{ netvalue.price }}</td>
+            <td>追蹤標的</td>
+            <td colspan="2">{{ netvalue.indexTarget }}</td>
           </tr>
           <tr>
-              <td>淨值</td>
-              <td colspan="2">{{ netvalue.netValue }}</td>
+            <td>市價</td>
+            <td colspan="2">{{ netvalue.price }}</td>
           </tr>
           <tr>
-              <td>成交量</td>
-              <td colspan="2">{{ netvalue.transaction }}</td>
+            <td>淨值</td>
+            <td colspan="2">{{ netvalue.netValue }}</td>
           </tr>
           <tr>
-              <td>配息</td>
-              <td colspan="2">{{ dividend.dividend }} </td>
+            <td>成交量</td>
+            <td colspan="2">{{ netvalue.transaction }}</td>
           </tr>
           <tr>
-              <td>配息頻率</td>
-              <td colspan="2">{{ dividend.times }} </td>
+            <td>配息</td>
+            <td colspan="2">{{ dividend.dividend }}</td>
           </tr>
           <tr>
-              <td>年報酬率(含息)</td>
-              <td colspan="2">{{ operate.IRR }}</td>
+            <td>配息頻率</td>
+            <td colspan="2">{{ dividend.times }}</td>
           </tr>
           <tr>
-              <td>內扣費用</td>
-              <td colspan="2">{{ operate.fee }}%</td>
+            <td>年報酬率(含息)</td>
+            <td colspan="2">{{ operate.IRR }}</td>
           </tr>
           <tr>
-              <td>受益人數</td>
-              <td colspan="2">{{ operate.benefitPeople }}</td>
+            <td>內扣費用</td>
+            <td colspan="2">{{ operate.fee }}%</td>
           </tr>
           <tr>
-              <td>成立年齡</td>
-              <td colspan="2">{{ operate.years }}</td>
+            <td>受益人數</td>
+            <td colspan="2">{{ operate.benefitPeople }}</td>
+          </tr>
+          <tr>
+            <td>成立年齡</td>
+            <td colspan="2">{{ operate.years }}</td>
           </tr>
           <tr class="table-warning">
-              <th scope="row">#</th>
-              <th scope="row">前十大持股</th>
-              <th scope="row">持股比例</th>
+            <th scope="row">#</th>
+            <th scope="row">前十大持股</th>
+            <th scope="row">持股比例</th>
           </tr>
-          <tr v-for="(item,index) in components">
-              <td>{{ index }} </td>
-              <td>{{ item.cpName }}</td>
-              <td>{{ item.weight+"%"}}</td>
+          <tr v-for="(item, index) in components">
+            <td>{{ index }}</td>
+            <td>{{ item.cpName }}</td>
+            <td>{{ item.weight + "%" }}</td>
           </tr>
         </table>
       </ClientOnly>
@@ -66,7 +70,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
 
 export default {
   props: {
@@ -83,25 +87,26 @@ export default {
 
     const fetchData = async () => {
       try {
-        const [componentsData, netvalueData, dividendData, operateData] = await Promise.all([
-          $fetch("/api/components", {
-            method: "post",
-            body: { etfID: stockID.value },
-          }),
-          $fetch("/api/netvalue", {
-            method: "post",
-            body: { etfID: stockID.value },
-          }),
-          $fetch("/api/dividend", {
-            method: "post",
-            body: { etfID: stockID.value },
-          }),
-          $fetch("/api/operate", {
-            method: "post",
-            body: { etfID: stockID.value },
-          }),
-        ]);
-        
+        const [componentsData, netvalueData, dividendData, operateData] =
+          await Promise.all([
+            $fetch("/api/components", {
+              method: "post",
+              body: { etfID: stockID.value },
+            }),
+            $fetch("/api/netvalue", {
+              method: "post",
+              body: { etfID: stockID.value },
+            }),
+            $fetch("/api/dividend", {
+              method: "post",
+              body: { etfID: stockID.value },
+            }),
+            $fetch("/api/operate", {
+              method: "post",
+              body: { etfID: stockID.value },
+            }),
+          ]);
+
         components.value = componentsData;
         netvalue.value = netvalueData;
         dividend.value = dividendData;
@@ -111,11 +116,14 @@ export default {
       }
     };
 
-    // watch stockID
-    watch(()=>props.stockID, (newVal)=>{
-      stockID.value = newVal
-      fetchData()
-    })
+    // watch from props stockID
+    watch(
+      () => props.stockID,
+      (newVal) => {
+        stockID.value = newVal;
+        fetchData();
+      }
+    );
 
     return { stockID, components, netvalue, dividend, operate };
   },
@@ -123,9 +131,9 @@ export default {
 </script>
 
 <style>
-  tr {
-    line-height: 30px;
-    min-height: 30px;
-    height: 30px;
+tr {
+  line-height: 30px;
+  min-height: 30px;
+  height: 30px;
 }
 </style>

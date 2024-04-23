@@ -19,11 +19,11 @@
               打造退休計劃從選擇ETF開始
             </h1>
             <p
-              class="card-text mt-5"
+              class="card-text mt-5 d-none d-lg-block d-xl-block"
               style="
                 max-width: 40rem;
                 line-height: 1.8;
-                text-shadow: 0.5px 0.5px #000;
+                text-shadow: 1px 1px #000;
               "
             >
               迎接美好退休生活，智選ETF基金，贏得未來！每一筆投資，都是您退休計畫的關鍵一步。

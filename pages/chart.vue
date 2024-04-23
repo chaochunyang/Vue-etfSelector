@@ -12,7 +12,9 @@
           id="chartContainer"
           style="position: relative"
         >
+        <div class="container">
           <canvas id="mainChart"></canvas>
+        </div>
         </div>
       </div>
     </div>
